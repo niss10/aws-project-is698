@@ -1,0 +1,59 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: RDS Instance in private subnet with Terraform-integrated VPC and SG
+
+Parameters:
+  VPCId:
+    Type: String
+  PrivateSubnetId:
+    Type: String
+  PrivateSubnetId2:
+    Type: String
+  RDSSecurityGroupId:
+    Type: String
+  DBUsername:
+    Type: String
+    Default: admin
+  DBPassword:
+    Type: String
+    NoEcho: true
+  DBInstanceClass:
+    Type: String
+    Default: db.t3.micro
+  DBName:
+    Type: String
+    Default: appdb
+
+Resources:
+  MyDBInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      AllocatedStorage: 20
+      DBInstanceClass: !Ref DBInstanceClass
+      Engine: mysql
+      EngineVersion: "8.0"
+      MasterUsername: !Ref DBUsername
+      MasterUserPassword: !Ref DBPassword
+      DBName: !Ref DBName
+      VPCSecurityGroups:
+        - !Ref RDSSecurityGroupId
+      DBSubnetGroupName: !Ref DBSubnetGroup
+      PubliclyAccessible: false
+      BackupRetentionPeriod: 1
+      MultiAZ: false
+      DeletionProtection: false
+
+  DBSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: "Private subnet group for RDS"
+      SubnetIds:
+        - !Ref PrivateSubnetId
+        - !Ref PrivateSubnetId2
+      Tags:
+        - Key: Name
+          Value: rds-subnet-group
+
+Outputs:
+  DBEndpoint:
+    Description: RDS Endpoint
+    Value: !GetAtt MyDBInstance.Endpoint.Address

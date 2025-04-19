@@ -43,6 +43,15 @@ resource "aws_subnet" "private" {
   }
 }
 
+resource "aws_subnet" "private_2" {
+  vpc_id     = aws_vpc.main.id
+  cidr_block = "10.0.4.0/24"
+  availability_zone = "us-east-1a"
+  tags = {
+    Name = "scalable-private-subnet-2"
+  }
+}
+
 # Internet Gateway
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.main.id

@@ -9,3 +9,17 @@ aws cloudformation create-stack \
     ParameterKey=PublicSubnetId2,ParameterValue=<SUBNET_2_ID> \
     ParameterKey=ALBSecurityGroupId,ParameterValue=<ALB_SG_ID> \
     ParameterKey=EC2SecurityGroupId,ParameterValue=<EC2_SG_ID>
+
+2. Deploy RDS stack
+aws cloudformation create-stack \
+  --stack-name rds-stack \
+  --template-body file://cloudformation/rds_stack.yaml \
+  --capabilities CAPABILITY_NAMED_IAM \
+  --parameters \
+    ParameterKey=VPCId,ParameterValue=<VPC_ID> \
+    ParameterKey=PrivateSubnetId,ParameterValue=<PRIVATE_SUBNET_1_ID> \
+    ParameterKey=PrivateSubnetId2,ParameterValue=<PRIVATE_SUBNET_2_ID> \
+    ParameterKey=RDSSecurityGroupId,ParameterValue=<RDS_SG_ID> \
+    ParameterKey=DBUsername,ParameterValue=admin \
+    ParameterKey=DBPassword,ParameterValue=YourSecurePassword123 \
+    ParameterKey=DBName,ParameterValue=appdb
