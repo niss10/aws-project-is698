@@ -1,0 +1,11 @@
+1. Deploy cloudFormationStack
+aws cloudformation create-stack \
+  --stack-name ec2-alb-stack \
+  --template-body file://cloudformation/ec2_alb_stack.yaml \
+  --capabilities CAPABILITY_NAMED_IAM \
+  --parameters \
+    ParameterKey=VPCId,ParameterValue=<VPC_ID> \
+    ParameterKey=PublicSubnetId1,ParameterValue=<SUBNET_1_ID> \
+    ParameterKey=PublicSubnetId2,ParameterValue=<SUBNET_2_ID> \
+    ParameterKey=ALBSecurityGroupId,ParameterValue=<ALB_SG_ID> \
+    ParameterKey=EC2SecurityGroupId,ParameterValue=<EC2_SG_ID>

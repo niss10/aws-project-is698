@@ -23,6 +23,16 @@ resource "aws_subnet" "public" {
   }
 }
 
+resource "aws_subnet" "public_2" {
+  vpc_id     = aws_vpc.main.id
+  cidr_block = "10.0.3.0/24"
+  availability_zone = "us-east-1b"
+  map_public_ip_on_launch = true
+  tags = {
+    Name = "scalable-public-subnet-2"
+  }
+}
+
 # Private Subnet
 resource "aws_subnet" "private" {
   vpc_id     = aws_vpc.main.id
@@ -58,9 +68,14 @@ resource "aws_route_table_association" "public" {
   route_table_id = aws_route_table.public.id
 }
 
+resource "aws_route_table_association" "public_2" {
+  subnet_id      = aws_subnet.public_2.id
+  route_table_id = aws_route_table.public.id
+}
+
 # Security Groups
 resource "aws_security_group" "alb_sg" {
-  name        = "sg-alb"
+  name        = "alb-sg"
   description = "Allow HTTP/HTTPS"
   vpc_id      = aws_vpc.main.id
 
@@ -86,12 +101,12 @@ resource "aws_security_group" "alb_sg" {
   }
 
   tags = {
-    Name = "sg-alb"
+    Name = "alb-sg"
   }
 }
 
 resource "aws_security_group" "ec2_sg" {
-  name        = "sg-ec2"
+  name        = "ec2-sg"
   description = "Allow traffic from ALB"
   vpc_id      = aws_vpc.main.id
 
@@ -110,12 +125,12 @@ resource "aws_security_group" "ec2_sg" {
   }
 
   tags = {
-    Name = "sg-ec2"
+    Name = "ec2-sg"
   }
 }
 
 resource "aws_security_group" "rds_sg" {
-  name        = "sg-rds"
+  name        = "rds-sg"
   description = "Allow MySQL from EC2"
   vpc_id      = aws_vpc.main.id
 
@@ -134,6 +149,6 @@ resource "aws_security_group" "rds_sg" {
   }
 
   tags = {
-    Name = "sg-rds"
+    Name = "rds-sg"
   }
 }
