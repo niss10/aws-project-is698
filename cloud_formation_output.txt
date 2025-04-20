@@ -1,0 +1,21 @@
+Compute stack
+{
+    "StackId": "arn:aws:cloudformation:us-east-1:600627355994:stack/ec2-alb-stack/a6a976d0-1d6d-11f0-9911-0e5158f393e1"
+}
+
+ALB DNS name
+web-alb-1697498594.us-east-1.elb.amazonaws.com
+
+
+RDS stack
+{
+    "StackId": "arn:aws:cloudformation:us-east-1:600627355994:stack/rds-stack/7d97dda0-1d71-11f0-b790-0edbce42571f"
+}
+
+DB endpoint
+rds-stack-mydbinstance-hchnmfywusdn.c9qosqsigeh8.us-east-1.rds.amazonaws.com
+
+Lambda + s3 stack
+{
+    "StackId": "arn:aws:cloudformation:us-east-1:600627355994:stack/lambda-s3-logging/425c84d0-1d89-11f0-9d34-1252b0b56c73"
+}

@@ -23,3 +23,13 @@ aws cloudformation create-stack \
     ParameterKey=DBUsername,ParameterValue=admin \
     ParameterKey=DBPassword,ParameterValue=YourSecurePassword123 \
     ParameterKey=DBName,ParameterValue=appdb
+
+3. Deploy Lambdafunction and S3 bucket
+aws cloudformation create-stack \
+  --stack-name lambda-s3-logging \
+  --template-body file://cloudformation/lambda_s3_stack.yaml \
+  --capabilities CAPABILITY_NAMED_IAM \
+  --parameters ParameterKey=EnvironmentName,ParameterValue=dev
+
+4. Delete stack
+aws cloudformation delete-stack --stack-name lambda-s3-logging

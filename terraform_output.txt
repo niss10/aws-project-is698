@@ -1,0 +1,8 @@
+alb_sg_id = "sg-0f7fbac53c2c8af6c"
+ec2_sg_id = "sg-01e6f1a7d8c2581f6"
+private_subnet_2_id = "subnet-02194513e58468f1f"
+private_subnet_id = "subnet-0b9104a164e9a2e33"
+public_subnet_2_id = "subnet-0b4b3d51eb46954d9"
+public_subnet_id = "subnet-051636c29f8c8c5c9"
+rds_sg_id = "sg-0e97a52cd21251ea3"
+vpc_id = "vpc-00212aba844c7f396"
