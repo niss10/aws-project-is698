@@ -101,7 +101,7 @@ Diagram file included: `/architecture/aws_architecture.drawio`
 ---
 
 ## Project Structure
-AWS-PROJECT-IS698/
+```AWS-PROJECT-IS698/
 ├── terraform/
 │   └── main.tf
 ├── cloudformation/
@@ -113,6 +113,7 @@ AWS-PROJECT-IS698/
 ├── cli_commands/
 │   └── cli.txt
 ├── README.md
+```
 
 ---
 
