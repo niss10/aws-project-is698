@@ -33,3 +33,27 @@ aws cloudformation create-stack \
 
 4. Delete stack
 aws cloudformation delete-stack --stack-name lambda-s3-logging
+
+
+=========================================================================
+Use AWS CLI to Interact with EC2, S3, and Lambda
+==========================================================================
+1. List all S3 buckets
+aws s3 ls
+
+
+2. Upload a file to the S3 bucket
+echo "Hello from CLI!" > cli-upload.txt
+aws s3 cp cli-upload.txt s3://scalable-logs-bucket-dev/
+
+3. List running EC2 instances
+aws ec2 describe-instances \
+  --filters "Name=instance-state-name,Values=running" \
+  --query "Reservations[*].Instances[*].[InstanceId,InstanceType,PrivateIpAddress,State.Name]" \
+  --output table
+
+ 4. Invoke the Lambda function manually
+ aws lambda invoke \
+  --function-name s3-upload-logger-dev \
+  --payload '{}' \
+  output.json
