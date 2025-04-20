@@ -136,7 +136,7 @@ AWS-PROJECT-IS698/
 
 ## Credits
 
-Project designed and implemented by **Nisarg** as part of an end-to-end cloud architecture learning journey through coursework IS-698 Cloud Computing under the guidance by **Dr, Samson oni**.
+This project was designed and implemented by **Nisarg Patel** as part of an end-to-end cloud architecture learning journey in the IS-698 Cloud Computing course, under the guidance of **Dr. Samson Oni**.
 
 ---
 
